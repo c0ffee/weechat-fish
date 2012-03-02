@@ -256,6 +256,9 @@ def blowcrypt_unpack(msg, cipher):
     _, rest = msg.split(' ', 1)
     if len(rest) < 12:
         raise MalformedError
+        
+    while (len(rest) % 12):
+        rest = rest[:-1]
 
     try:
         raw = blowcrypt_b64decode(padto(rest, 12))
