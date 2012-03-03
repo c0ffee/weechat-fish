@@ -435,6 +435,7 @@ def dh1080_unpack(msg, ctx):
             raise MalformedError
         ctx.state = 1
         try:
+            msg = re.sub(r'\sCBC$','',msg)
             cmd, public_raw = msg.split(' ', 1)
             public = bytes2int(dh1080_b64decode(public_raw))
 
